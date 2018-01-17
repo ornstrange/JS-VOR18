@@ -1,0 +1,68 @@
+Verkefni 2, Örn Óli Strange
+17.01.2018
+
+1.	ECMAScript er forritunar tungumáls staðall sem Javascript notar, það er í rauninni bara reglur um hvernig
+	forritunarmál á að vera og virka.
+
+2.	Það þýðir að Js er lauslátt á villur og reynir sitt besta að giska á það sem þú ert að meina ef það sér
+	eitthvað gruggugt í kóðanum
+
+3.	Nei það held ég ekki
+
+4.	Null og undefined eru breytur eða gildi á breytum sem eru ekki enn skilgreindar
+
+5.	Þrjú samasem-merki bera saman nákvæmara en tvö, t.d 1 == true gefur rétt en 1 === true gefur ekki rétt
+	og 1 == "1" gefur rétt en ekki 1 === "1".
+
+6.	"var" býr til breytu sem er til í Global scope'inu eða inní því function sem það var búið til, en let
+	virkar bara í því scope'i nákvæmlega sem það var declarað.
+
+	function prump() {
+		var x = 5;
+
+		function piss() {
+			var x = 10;
+			console.log(x)
+		}
+
+		console.log(x)
+	}
+
+	gefur 10 og svo 10
+
+	function prump() {
+		let x = 5;
+
+		function piss() {
+			let x = 10;
+			console.log(x)
+		}
+
+		console.log(x)
+	}
+
+	gefur 5 og svo 10
+
+
+7.	var x = function(inp) { return inp + 5; };
+	var x = (inp) => inp + 5
+	function x(inp) { return inp + 5; }
+
+8.	Segir það sem er að lesa Js kóðann að vera í strict mode, sem leyfir ekki ýmsa hluti sem eru
+	leyfðir venjulega. Semsagt notað til að vinna bug á lauslæti Js varðandi villur
+
+9.	Afþví það fyrsta sem Js kóði gerir er að leita af öllum function declerations og geyma þær
+	til notkunar.
+
+10.	Hann birtir 8, afþví hann byrjar á öllum function decleration og skiptir fyrra út fyrir seinni.
+
+11.	Afþví Js er lauslátt þá bara vinnur hann með þessu og skrifar "30"
+
+12.	Þessi kóði "alertar" á skjáinn Hellow World, svigarnir gera þér kleift á að kalla á fallið strax
+
+13.	Breytur geta verið Global eða Local, Global breytur virka allstaðar og er hægt að breyta þeim allstaðar,
+	Local breytur er bara hægt að nota inní þeim föllum eða Scope sem þær voru gerðar í og niður í lægri Scope.
+
+14.	Call stackið eru eitthverskonar leiðbeiningar fyrir þýðandann sem er að keyra Js kóðann, hann geymir
+	hvaða föll eru hvar, hver er verið að kalla í, hvaða föll eiga heima inní 
+	hvaða öðrum föllum og hvaða fall er keyrt næst.
