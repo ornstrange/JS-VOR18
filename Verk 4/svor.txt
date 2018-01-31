@@ -1,0 +1,16 @@
+2.	Child objectið erfir allt frá Parent objectinu með call fallinu, sem gefur því
+	allar properties sem Parentið á, og svo er hægt að bæta ofan á það með það
+	þú villt.
+
+3.	Class er eiginlega bara afbrigði af Prototype og virkar svipað. Class er bara
+	Prototype object með constructor og aðeins öðruvísi methods; static, get og
+	method. Classar styðja sub classes, sem er bara svipað og Prototype getur gert.
+
+	class Pizza {
+		constructor(size, price) {
+			this.size = size;
+			this.price = price;
+		}
+	}
+
+	pepperoni = new Pizza("Large", 1900);
