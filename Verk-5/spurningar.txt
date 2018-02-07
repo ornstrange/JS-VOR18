@@ -1,0 +1,32 @@
+1.	afþví ID eru unique og þá leitar hún bara þangað til hún finnur það.
+
+2.	Það fer í gegnum HTML skjalið og finnur öll element sem uppfylla queryið t.d.
+	
+	<-- HTML
+	
+	<div class="gamli"> gamli gamli </div>
+	<div class="dude gamli"> duuude </div>
+	
+	!-->
+
+	<-- JS
+
+	found = document.querySelectorAll('.gamli') // finnur 2 element
+	if (found.length >= 1) {
+		// gera ehv stuff við það hér
+	}
+
+	!-->
+
+3.	Það er bara array eða safn af elementum eða nodes.
+
+	var elements = document.getElementsByTagName('li'); // finn öll 'li' node
+	if (elements.length > 0) { // ef ég finn eitthvað
+		var el = elements[2]; // nota element 3 í listanum
+		el.className = 'cool'; // breyti class í cool
+	}
+
+4.	Skilar nodelist eftir tag name t.d getElementsByTagName('div') skilar öllum <div>
+
+5.	notum Jquery eða compressum skjalið með eitthverju plugin. Það er bara node sem
+	er búið til. nema í explorer!

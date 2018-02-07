@@ -1,0 +1,72 @@
+body, html {
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+	font-size: 1.5rem;
+}
+
+.quiz {
+	width: 80%;
+	margin: 0 auto;
+}
+
+.title {
+	text-align: center;
+	font-size: 3rem;
+	font-weight: 300;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	border-bottom: 1px solid black;
+}
+
+.middle {
+	display: flex;
+	width: 100%;
+	text-align: center;
+	height: 40vh;
+}
+
+.middle span {
+	display: block;
+	margin-top: 1rem;
+	font-size: 3rem;
+}
+
+.middle .left, .right {
+	padding-top: 4rem;
+	width: 20%;
+}
+
+.middle .center {
+	width: 60%;
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+	padding-top: 10vh;
+	/*font-size: 1.2rem;*/
+}
+
+.bottom {
+	border-top: 1px solid black;
+	margin-top: 3rem;
+	display: flex;
+	padding-top: 3rem;
+	flex-wrap: wrap;
+}
+
+.bottom div {
+	width: calc(50% - 4.1rem);
+	margin: 0.2rem 1rem;
+	padding: 1rem;
+	text-align: center;
+	line-height: 1rem;
+	height: 1rem;
+	border: 1px solid black;
+	cursor: pointer;
+	/*background: #f00;*/
+	transition: .3s all ease;
+}
+
+.bottom div:hover {
+	transform: scale(1.1);
+	background: #EEE;
+}
