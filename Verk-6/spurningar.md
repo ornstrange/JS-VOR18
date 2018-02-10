@@ -1,18 +1,20 @@
-1.  a)  ```javascript
-				<style> .active { color: red; } </style>
-				<script>
-				    gunnar = document.getElementsByTagName('div')[1];
-				    gunnar.setAttribute('class', 'active');
-				</script>
-				```
+1.  a)  
+	```javascript
+	<style> .active { color: red; } </style>
+	<script>
+		gunnar = document.getElementsByTagName('div')[1];
+		gunnar.setAttribute('class', 'active');
+	</script>
+	```
 
-    b)  ```javascript
-    		<script>
-			    karen = document.getElementsByTagName('div')[2];
-			    karenParent = karen.parentNode;
-			    karenParent.removeChild(karen);
-				</script>
-				```
+    b)  
+	```javascript
+	<script>
+		karen = document.getElementsByTagName('div')[2];
+		karenParent = karen.parentNode;
+		karenParent.removeChild(karen);
+	</script>
+	```
 
 2.  prentar út linkinn á fyrsta <a> taginu sem hann finnur í skjalinu
 
