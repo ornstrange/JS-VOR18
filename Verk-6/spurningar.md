@@ -14,11 +14,11 @@
 				</script>
 				```
 
-2.  prentar út linkinn á fyrsta <a> taginu sem hann finnur í skjalinu
+2.  prentar Ãºt linkinn Ã¡ fyrsta <a> taginu sem hann finnur Ã­ skjalinu
 
-3.  sjá [quiz.html][./quiz.html]
+3.  sjÃ¡ [quiz.html](./quiz.html)
 
-4.  "DOM LEVEL 2 EVENT LISTENERS" er nıjasta og er best. Afşví 'event listeners' geta virkjağ
-    fleiri en eitt fall şegar şeir kveikna ólíkt 'event handler'.
+4.  "DOM LEVEL 2 EVENT LISTENERS" er nÃ½jasta og er best. AfÃ¾vÃ­ 'event listeners' geta virkjaÃ°
+    fleiri en eitt fall Ã¾egar Ã¾eir kveikna Ã³lÃ­kt 'event handler'.
 
-5.  sjá  [Quiz í verkefni 5][../Verk-5]
+5.  sjÃ¡Â  [Quiz Ã­ verkefni 5](../Verk-5)
