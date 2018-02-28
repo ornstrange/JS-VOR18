@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>quiz dæmi</title>
+</head>
+<body>
+	<script>
+		var quizEl = document.createElement('div');
+		quizEl.id = 'quiz';
+
+		var questionEl = document.createElement('div');
+		questionEl.id = 'question';
+		var questionText = document.createTextNode('Spurning 1');
+		questionEl.appendChild(questionText);
+
+		var answersEl = document.createElement('div');
+		answersEl.id = 'answers';
+
+		for (let i = 1; i < 3; i++) {
+			var ansEl = document.createElement('div');
+			ansEl.setAttribute('class', 'answer');
+			ansEl.setAttribute('data-active', 'answer');
+			var ansText = 'Svarmöguleiki ' + i;
+			var ansTextNode = document.createTextNode(ansText);
+			ansEl.appendChild(ansTextNode);
+
+			answersEl.appendChild(ansEl);
+		}
+
+		quizEl.appendChild(questionEl);
+		quizEl.appendChild(answersEl);
+
+		document.body.appendChild(quizEl);
+	</script>
+</body>
+</html>
