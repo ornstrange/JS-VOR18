@@ -16,3 +16,5 @@
 
 5. a) kemur í veg fyrir fjölgun á event bubbling og capturing
 <br>b) ef að event er ekki að virka alveg rétt þá á default lausnin ekki að vera sú sem er vanalega, eventið heldur áfram að fjölgast eins og vanalega.
+
+6. Gerði events í quiz 5.
