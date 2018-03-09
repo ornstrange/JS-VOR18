@@ -10,12 +10,12 @@ let ball1;
 function setup() {
 	// canvas og bg color
 	createCanvas(windowWidth, windowHeight);
-	bg = color(255, 255, 0);
+	bg = color(30, 30, 30);
 
 	// matterjs stuff
 	engine = Engine.create();
 	world = engine.world;
-	ball1 = new Ball(500,200,BALLRAD,color(0,0,0));
+	ball1 = new Ball(500,200,BALLRAD,color(64,125,255));
 	Engine.run(engine);
 }
 

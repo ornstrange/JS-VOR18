@@ -14,5 +14,7 @@ Ball.prototype.updatePos = function() {
 
 Ball.prototype.show = function() {
 	this.updatePos();
+	noStroke();
+	fill(this.col);
 	ellipse(this.x, this.y, this.w, this.w);
 };
