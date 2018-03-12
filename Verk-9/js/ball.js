@@ -3,7 +3,7 @@ function Ball(x,y,r,col) {
 	World.add(world, this.body);
 	this.pos = this.body.position;
 	this.r = r;
-	this.w = r*2;
+	this.w = this.r*2;
 	this.col = col;
 };
 
