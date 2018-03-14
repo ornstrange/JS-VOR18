@@ -1,10 +1,14 @@
 // ball config
-const BALLRAD = 10;
+const BALLRAD = 40;
 
 // string config
-// const STRLEN = 100;
 const STRWIDTH = 10;
-const STRNODECOUNT = 10;
-const STRNODESTIFF = 0.5;
-const STRNODEOFF = 40;
-const STRNODERAD = 15;
+const STRNODECOUNT = 15;
+const STRNODESTIFF = 0.75;
+const STRNODEOFF = 10;
+const STRNODERAD = 5;
+
+// cup config
+const CUPW = BALLRAD*2 + 10;
+const CUPWALLW = 10;
+const CUPWALLH = 100;

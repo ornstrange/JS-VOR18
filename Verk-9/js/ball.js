@@ -1,4 +1,4 @@
-function Ball(x,y,r,col) {
+const Ball = function(x,y,r,col) {
 	this.body = Bodies.circle(x, y, r);
 	World.add(world, this.body);
 	this.pos = this.body.position;
