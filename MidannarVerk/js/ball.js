@@ -1,5 +1,5 @@
-const Ball = function(x,y,r,col) {
-	this.body = Bodies.circle(x, y, r);
+const Ball = function(x,y,r,col,opts={}) {
+	this.body = Bodies.circle(x, y, r, opts);
 	World.add(world, this.body);
 	this.pos = this.body.position;
 	this.r = r;

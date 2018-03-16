@@ -11,30 +11,37 @@ const String = function(x,y,col) {
 };
 
 String.prototype.makeNodes = function(x,y,col,group) {
+	let opts = {
+		collisionFilter: {
+			group: group
+		}
+	}
 	for(let i = 0; i < STRNODECOUNT; i++) {
-		this.nodes.push(new Ball(x,y+(i*STRNODEOFF),STRNODERAD,col));
-		this.nodes[i].body.collisionFilter.group = group;
+		this.nodes.push(new Ball(x,y+(i*STRNODEOFF),STRNODERAD,col,opts));
 	};
 
-	for (let i = 0; i < this.nodes.length; i++) {
+	for (let i = 0; i < this.nodes.length-1; i++) {
 	 	let n = this.nodes[i];
-		if (n.body.id != STRNODECOUNT) {
-			let options = {
-				bodyA: n.body,
-				bodyB: this.nodes[i+1].body,
-				length: STRNODEOFF,
-				stiffness: STRNODESTIFF
-			};
-			let constraint = Constraint.create(options);
-			World.add(world, constraint);
+		let options = {
+			bodyA: n.body,
+			bodyB: this.nodes[i+1].body,
+			length: STRNODEOFF,
+			stiffness: STRNODESTIFF
 		};
+		let constraint = Constraint.create(options);
+		World.add(world, constraint);
 	};
 };
 
 String.prototype.makeEndBall = function(col,group) {
-	let endBallPos = this.nodes[STRNODECOUNT-1].body.position;
-	this.endBall = new Ball(endBallPos.x, endBallPos.y, BALLRAD, col);
-	this.endBall.body.collisionFilter.group = group;
+	let endBallPos = this.nodes[STRNODECOUNT-1].pos;
+	let opts = {
+		mass: BALLMASS,
+		collisionFilter: {
+			group: group
+		}
+	}
+	this.endBall = new Ball(endBallPos.x, endBallPos.y, BALLRAD, col, opts);
 
 	let options = {
 		bodyA: this.endBall.body,
@@ -48,11 +55,12 @@ String.prototype.makeEndBall = function(col,group) {
 };
 
 String.prototype.anchorMouse = function() {
-	this.nodes[0].body.position.x = mouseX;
-	this.nodes[0].body.position.y = mouseY;
+	this.nodes[0].pos.x = mouseX;
+	this.nodes[0].pos.y = mouseY;
 };
 
 String.prototype.show = function() {
+	this.anchorMouse();
 	noFill();
 	stroke(255);
 	strokeWeight(STRWIDTH);
@@ -72,7 +80,5 @@ String.prototype.show = function() {
 	// endBall
 	this.endBall.show();
 
-	// for (let i = 0; i < this.nodes.length; i++) {
-	// 	this.nodes[i].show();
-	// }
+	// this.nodes.forEach(function(n){n.show();}) sýnir strengja nóður
 };
