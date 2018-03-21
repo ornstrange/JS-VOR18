@@ -1,20 +1,28 @@
-const Ball = function(x,y,r,col,opts={}) {
-	this.body = Bodies.circle(x, y, r, opts);
-	World.add(world, this.body);
-	this.pos = this.body.position;
+const Ball = function(x,y,r,col,opts) {
+	Base.call(this,x,y,col,opts);
 	this.r = r;
-	this.w = this.r*2;
-	this.col = col;
-};
+	
+	this.makeBody();
+}
 
-Ball.prototype.updatePos = function() {
-	this.x = this.pos.x;
-	this.y = this.pos.y;
-};
+Ball.prototype.makeBody = function() {
+	this.body = Bodies.circle(this.x, this.y, this.r, this.opts);
+	World.add(world, this.body);
+}
+
+Ball.prototype.update = function() {
+	this.x = this.body.position.x;
+	this.y = this.body.position.y;
+	this.ang = this.body.angle;
+}
 
 Ball.prototype.show = function() {
-	this.updatePos();
+	push();
+	translate(this.x,this.y);
+	rotate(this.ang);
 	noStroke();
 	fill(this.col);
-	ellipse(this.x, this.y, this.w, this.w);
-};
+	ellipseMode(CENTER);
+	ellipse(0,0,this.r*2);
+	pop();
+}

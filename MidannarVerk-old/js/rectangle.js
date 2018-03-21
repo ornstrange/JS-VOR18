@@ -12,6 +12,8 @@ Rectangle.prototype.updatePos = function() {
 	this.pos = this.body.position;
 	this.x = this.pos.x;
 	this.y = this.pos.y;
+	this.angle = 0;
+	this.body.angle = 0;
 };
 
 Rectangle.prototype.show = function() {
@@ -19,6 +21,9 @@ Rectangle.prototype.show = function() {
 	rectMode(CENTER);
 	noStroke();
 	fill(this.col);
+	push();
+	translate(this.x,this.y)
 	rotate(this.angle);
-	rect(this.x, this.y, this.w, this.h);
+	rect(0,0, this.w, this.h);
+	pop();
 };
