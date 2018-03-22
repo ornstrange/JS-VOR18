@@ -4,6 +4,8 @@ með bolta á endanum og á að hitta honum ofan í bolla. um leið og notandi n
 
 bæði circle og rect eru svipuð, gæti verið með base class og svo inheritað circle og rect útfrá því?, taka báðir inn x,y,(w,h)/r,options og eru með show, update föll
 
+ef notandi hittir oní bollan set ég bara force á endaboltann upp svo hann skjótist uppúr eða ehv
+
 ---
 # Pælingar
 index.js heldur um allt og inniheldur draw loop og setup

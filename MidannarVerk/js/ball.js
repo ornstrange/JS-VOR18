@@ -1,7 +1,7 @@
 const Ball = function(x,y,r,col,opts) {
 	Base.call(this,x,y,col,opts);
 	this.r = r;
-	
+	// búa til physics object
 	this.makeBody();
 }
 
@@ -13,16 +13,25 @@ Ball.prototype.makeBody = function() {
 Ball.prototype.update = function() {
 	this.x = this.body.position.x;
 	this.y = this.body.position.y;
-	this.ang = this.body.angle;
+	this.angle = this.body.angle;
 }
 
 Ball.prototype.show = function() {
+	// uppfæra staðsetningu
+	this.update();
+
+	// teikna stuff
 	push();
 	translate(this.x,this.y);
-	rotate(this.ang);
+	rotate(this.angle);
 	noStroke();
 	fill(this.col);
 	ellipseMode(CENTER);
 	ellipse(0,0,this.r*2);
+
+	// debug angle lína
+	stroke(255-this.col);
+	strokeWeight(2);
+	line(0,0,this.r,0);
 	pop();
 }
