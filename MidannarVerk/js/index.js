@@ -1,19 +1,32 @@
 const BALLCOLOR = [0,125,30];
+const ENDBALLR = 50;
 
 const Engine			= Matter.Engine,
 			Body				= Matter.Body,
 			Events			= Matter.Events,
 			Constraint	= Matter.Constraint,
+			Mouse				= Matter.Mouse,
+			MouseConst	= Matter.MouseConstraint,
 			World				= Matter.World,
 			Sleeping		= Matter.Sleeping,
 			Bodies			= Matter.Bodies;
 
 var engine;
 var world;
+var collGroup = 0x0001;
+var collGroup2 = 0x0002;
 
 var ball;
 var cupString;
 var ground;
+
+function pX(percent) {
+	return Math.round(percent/100 * windowWidth);
+}
+
+function pY(percent) {
+	return Math.round(percent/100 * windowHeight);
+}
 
 function matterSetup() {
 	engine = Engine.create();
@@ -34,40 +47,51 @@ function setup() {
 	matterSetup();
 
 	ball = new Ball(
-		width/2-400,
-		50,
-		50,
+		pX(50),
+		pY(5),
+		pX(2),
 		color(BALLCOLOR),
-		{}
+		{
+			density: 1,
+			friction: 0.05,
+			frictionAir: 0.005,
+			restitution: 0.4,
+			isSleeping:true,
+		}
 	);
 
 	ground = new Rectangle(
-		width/2,
-		height-10,
-		width,
-		20,
+		pX(50),
+		pY(100) - pY(1),
+		pX(100),
+		pY(2),
 		50,
-		{isStatic:true}
+		{
+			isStatic:true,
+		}
 	);
+
+
+	// add mouse control
+	var mouse = Mouse.create(canvas.elt),
+	mouseConstraint = MouseConst.create(engine, {
+		mouse: mouse,
+		constraint: {
+			angularStiffness: 1,
+		}
+	});
+
+	World.add(world, mouseConstraint);
 };
 
 function draw() {
 	background(254, 211, 48);
 
-	ball.show();
 	ground.show();
+	ball.show();
 };
 
 // frekar gagnslaust...
 function windowResized() {
 	resizeCanvas(windowWidth, windowHeight);
 };
-
-// mouse stuff
-function mouseClicked() {
-  if (!ball.anchored) {
-  	cupString.startDrag();
-  } else {
-  	cupString.endDrag();
-  }
-}

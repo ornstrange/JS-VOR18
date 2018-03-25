@@ -2,6 +2,7 @@ const Rectangle = function(x,y,w,h,col,opts) {
 	Base.call(this,x,y,col,opts);
 	this.w = w;
 	this.h = h;
+	// bua til physics body
 	this.makeBody();
 }
 
@@ -17,7 +18,10 @@ Rectangle.prototype.update = function() {
 }
 
 Rectangle.prototype.show = function() {
+	// uppfæra staðsetningu
 	this.update();
+
+	// teikna
 	push();
 	translate(this.x,this.y);
 	rotate(this.angle);
