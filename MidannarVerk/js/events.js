@@ -30,3 +30,24 @@ function ballInCupEvents() {
 		}
 	});
 };
+
+function scoreTimerEvents() {
+	if (score > oldScore) {
+		startTimer = round(millis());
+		countdown = true;
+	} else if (round(millis()) - startTimer >= timeSec * 1000) {
+		score = 0;
+		countdown = false;
+	};
+	oldScore = score;
+	// if (score === 1 && fromZero) {
+	// 	startTimer = round(millis());
+	// 	fromZero = false;
+	// 	countdown = true;
+	// };
+	// if (round(millis()) - startTimer >= timeSec * 1000) {
+	// 	score = 0;
+	// 	fromZero = true;
+	// 	countdown = false;
+	// };
+};

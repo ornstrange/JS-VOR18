@@ -16,7 +16,7 @@ function addItems() {
 		per.x(cupWidthPercent),
 		per.x(cupHeightPercent),
 		per.x(cupWallWidthPercent),
-		100
+		75
 	);
 
 	string = new String(
@@ -46,9 +46,20 @@ function addMouse() {
 	World.add(world, mouseConstraint);
 };
 
+function helpText() {
+	if (showHelp) {
+		textSize(per.x(2.5));
+		textFont('roboto');
+		textAlign(RIGHT);
+		fill(0,0,0,190);
+		text("Click and hold the cup to drag it,\nget the ball in the cup!", per.x(98), per.y(10));
+	};
+};
+
 function setup() {
 	// canvas og bg color
 	var canvas = createCanvas(per.x(100), per.y(100));
+	fullscreen();
 
 	matterSetup();
 	addItems();
@@ -63,13 +74,26 @@ function setup() {
 
 function draw() {
 	background(254, 211, 48);
+	scoreTimerEvents();
+	drawCountdown();
 	drawScore();
 
 	string.show();
 	cup.show();
+
+	helpText();
 };
 
 // frekar gagnslaust...
 function windowResized() {
 	resizeCanvas(windowWidth, windowHeight);
+};
+
+function mousePressed() {
+	if (mouseX <= per.x(startXPercent) + 100 &&
+	    mouseX >= per.x(startXPercent) - 100 &&
+	    mouseY <= per.y(startYPercent) + 100 &&
+	    mouseY >= per.y(startYPercent) - 100) {
+		showHelp = false;
+	}
 };

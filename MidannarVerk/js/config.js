@@ -8,9 +8,15 @@ var engine,
 		mouseConstraint,
 		cup,
 		string,
+		oldScore = 0;
 		score = 0;
-		gravity = 1,
+		gravity = 1.2,
 		timeScale = 1.05,
+		fromZero = true,
+		startTimer = 0,
+		timeSec = 5.5, // má fínstilla, vil hafa þetta erfitt samt
+		countdown = false,
+		showHelp = true,
 		per = {
 			x: function(x) {return Math.round(x/100 * windowWidth);},
 			y: function(y) {return Math.round(y/100 * windowHeight);}
@@ -37,7 +43,7 @@ const startXPercent = 20,
 			endBallBouncyness = 0.3,
 			endBallRadiusPercent = 3,
 			endBallMass = endBallRadiusPercent**3,
-			cupWidthPercent = endBallRadiusPercent * 2.455, // þetta er akkurat pirrandi erfitt
+			cupWidthPercent = endBallRadiusPercent * 2.55, // þetta er akkurat pirrandi erfitt
 			cupHeightPercent = cupWidthPercent * 0.8,
 			cupWallWidthPercent = endBallRadiusPercent*0.25,
 			stringNodeCount = 20,

@@ -23,7 +23,7 @@ String.prototype.makeNodes = function(nc,no,nr,br){
 			group = defaultColl;
 			category = ballColl;
 		};
-		x = x + (per.x(1)*(nodeCounter-1));
+		x = x - (per.x(1)*(nodeCounter-1));
 		return Bodies.circle(x, y, radius, { density: 0.01, collisionFilter: { group: group, category: category, restitution: endBallBouncyness } });
 	});
 	Body.setMass(this.nodes.bodies[nc-1], endBallMass);
@@ -40,7 +40,7 @@ String.prototype.makeNodes = function(nc,no,nr,br){
 
 String.prototype.nudgeEndBall = function() {
 	Body.setVelocity(this.nodes.bodies[this.nodeCount-1], { x: random(-5,5), y: random(-1,-5) });
-	Body.translate(this.nodes.bodies[this.nodeCount-1], { x: -per.x(1), y: per.y(35) });
+	Body.translate(this.nodes.bodies[this.nodeCount-1], { x: -per.x(50), y: -per.y(35) });
 };
 
 String.prototype.update = function() {

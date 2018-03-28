@@ -25,20 +25,21 @@ Cup.prototype.makeWalls = function(w,h,ww){
 		restitution: cupBouncyness,
 		collisionFilter: { category: mouseColl, mask: ballColl }
 	});
-	Body.setInertia(this.cup, 10**100); // svo bollinn snúist ekki
+	Body.setInertia(this.cup, Infinity); // svo bollinn snúist ekki
 	Body.setMass(this.cup, 10**100); // svo hann dragist ekki niður
 	World.add(world, this.cup);
 };
 
 Cup.prototype.makeSensorBar = function() {
-	this.sensorBar = Bodies.rectangle(this.x, this.y - this.ww, this.w - (this.ww*2), this.ww, { isSensor: true });
+	this.sensorBar = Bodies.rectangle(this.x, this.y - this.ww*3, this.w - (this.ww*4), this.ww/2, { isSensor: true });
 	let sensorConst = Constraint.create({
 		bodyA: this.sensorBar,
 		bodyB: this.cup,
-		pointB: { x: 0, y: (this.cup.parts[1].position.y - this.cup.position.y) - this.ww },
+		pointB: { x: 0, y: (this.cup.parts[1].position.y - this.cup.position.y) - this.ww*3 },
 		stiffness: 1,
 		angularStiffness: 1
 	});
+	Body.setInertia(this.sensorBar, 10**100);
 	World.add(world, [this.sensorBar, sensorConst]);
 };
 
@@ -84,5 +85,5 @@ Cup.prototype.show = function() {
 	// rect(this.x, this.y, this.ww, this.ww);
 	// fill(255);
 	// noStroke();
-	// rect(this.sensorBar.position.x, this.sensorBar.position.y, this.w - (this.ww*2), this.ww);
+	// rect(this.sensorBar.position.x, this.sensorBar.position.y, this.w - (this.ww*4), this.ww/2);
 };
