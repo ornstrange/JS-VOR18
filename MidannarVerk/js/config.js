@@ -18,8 +18,12 @@ var engine,
 		countdown = false,
 		showHelp = true,
 		per = {
-			x: function(x) {return Math.round(x/100 * windowWidth);},
-			y: function(y) {return Math.round(y/100 * windowHeight);}
+			x: function(x) {
+				return Math.round(x/100 * windowWidth);
+			},
+			y: function(y) {
+				return Math.round(y/100 * windowHeight);
+			}
 		};
 
 // MATTER STYTTINGAR

@@ -59,8 +59,6 @@ function helpText() {
 function setup() {
 	// canvas og bg color
 	var canvas = createCanvas(per.x(100), per.y(100));
-	fullscreen();
-
 	matterSetup();
 	addItems();
 
@@ -86,7 +84,7 @@ function draw() {
 
 // frekar gagnslaust...
 function windowResized() {
-	resizeCanvas(windowWidth, windowHeight);
+	resizeCanvas(per.x(100), per.y(100));
 };
 
 function mousePressed() {
@@ -95,5 +93,5 @@ function mousePressed() {
 	    mouseY <= per.y(startYPercent) + 100 &&
 	    mouseY >= per.y(startYPercent) - 100) {
 		showHelp = false;
-	}
+	};
 };
