@@ -39,8 +39,8 @@ String.prototype.makeNodes = function(nc,no,nr,br){
 };
 
 String.prototype.nudgeEndBall = function() {
-	Body.setVelocity(this.nodes.bodies[this.nodeCount-1], { x: random(-5,5), y: random(-1,-5) });
-	Body.translate(this.nodes.bodies[this.nodeCount-1], { x: -per.x(50), y: -per.y(35) });
+	Body.setVelocity(this.nodes.bodies[this.nodeCount-1], { x: 0, y: 0 });
+	Body.translate(this.nodes.bodies[this.nodeCount-1], { x: -per.x(10), y: per.y(50) });
 };
 
 String.prototype.update = function() {

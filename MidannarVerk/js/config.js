@@ -17,6 +17,9 @@ var engine,
 		timeSec = 5.5, // má fínstilla, vil hafa þetta erfitt samt
 		countdown = false,
 		showHelp = true,
+		plops = [],
+		victory = [],
+		looser = [],
 		per = {
 			x: function(x) {
 				return Math.round(x/100 * windowWidth);
@@ -43,7 +46,7 @@ const Engine			= Matter.Engine,
 // BASIC SIZE OG EHV STILLINGAR
 const startXPercent = 20,
 			startYPercent = 20,
-			cupBouncyness = 0.75,
+			cupBouncyness = 0.9,
 			endBallBouncyness = 0.3,
 			endBallRadiusPercent = 3,
 			endBallMass = endBallRadiusPercent**3,
