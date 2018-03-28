@@ -1,67 +1,68 @@
-const String = function(x,y,nc,no,nr,br,col,bcol,opts) {
+const String = function(x,y,nodeCount,nodeOffset,nodeRadius,ballRadius,stringCol,ballCol) {
 	this.x = x;
 	this.y = y;
-	this.nc = nc;
-	this.nr = nr;
-	this.no = no;
-	this.br = br;
-	this.col = col;
-	this.bcol = bcol;
-	this.opts = opts;
-	this.makeNodes(this.nc,this.nr,this.no,this.br);
+	this.nodeCount = nodeCount;
+	this.nodeOffset = nodeOffset;
+	this.nodeRadius = nodeRadius;
+	this.ballRadius = ballRadius;
+	this.stringCol = stringCol;
+	this.ballCol = ballCol;
+	this.nodes = [];
+	this.makeNodes(this.nodeCount,this.nodeOffset,this.nodeRadius,this.ballRadius);
 };
 
-String.prototype.makeNodes = function(nc,nr,no,br){
-	this.nodes = [];
-	for (let i = 0; i < nc; i++) {
-		let node;
-		if (i == nc-1) {
-			node = Bodies.circle(this.x,this.y+(nr*2*(i-1))+(no*i)+br,br,{ collisionFilter: {
-				group: mouseColl,
-				category: mouseColl
-			}});
-		} else {
-			node = Bodies.circle(this.x,this.y+(nr*2*i)+(no*i),nr,{
-				collisionFilter: {
-					group: 2**(i+2),
-					category: 2**(i+2)
-				}
-			});
+String.prototype.makeNodes = function(nc,no,nr,br){
+	let nodeCounter = 0;
+	let group = Body.nextGroup(true);
+	let category = defaultColl;
+	this.nodes = Composites.stack(this.x, this.y, 1, nc, 0, no, function(x, y) {
+		nodeCounter++;
+		let radius = nr;
+		if (nodeCounter === nc) {
+			radius = br;
+			group = defaultColl;
+			category = ballColl;
 		};
-		this.nodes.push(node);
-		World.add(world, this.nodes[i]);
-		if (i > 0) {
-			let constraint = Constraint.create({
-				bodyA: this.nodes[i-1],
-				bodyB: this.nodes[i],
-				stiffness: 1
-			});
-			World.add(world, constraint);
-		}
-	};
+		x = x + (per.x(1)*(nodeCounter-1));
+		return Bodies.circle(x, y, radius, { density: 0.01, collisionFilter: { group: group, category: category, restitution: endBallBouncyness } });
+	});
+	Body.setMass(this.nodes.bodies[nc-1], endBallMass);
+	Composites.chain(this.nodes, 0, 0, 0, 0, { stiffness: 1 });
+	Composite.add(this.nodes, Constraint.create({
+		bodyA: cup.cup,
+		pointA: { x: 0, y: cup.cup.parts[1].position.y - cup.cup.position.y },
+		bodyB: this.nodes.bodies[0],
+		stiffness: 1,
+		angularStiffness: 1
+	}));
+	World.add(world, this.nodes);
+};
+
+String.prototype.nudgeEndBall = function() {
+	Body.setVelocity(this.nodes.bodies[this.nodeCount-1], { x: random(-5,5), y: random(-1,-5) });
+	Body.translate(this.nodes.bodies[this.nodeCount-1], { x: -per.x(1), y: per.y(35) });
 };
 
 String.prototype.update = function() {
-	this.x = this.nodes[0].position.x;
-	this.y = this.nodes[0].position.y;
+	this.x = cup.cup.parts[1].position.x;
+	this.y = cup.cup.parts[1].position.y;
 };
 
 String.prototype.show = function() {
 	this.update();
 
-	// teikna, þetta lítur mehh út
 	noFill();
-	stroke(this.col);
-	strokeWeight(this.nr);
+	stroke(this.stringCol);
+	strokeWeight(this.nodeRadius*2);
 	beginShape();
-	curveVertex(this.x, this.y-(this.nr/2));
-	for (let i = 0; i < this.nc; i++) {
-		curveVertex(this.nodes[i].position.x, this.nodes[i].position.y);
-	}
-	curveVertex(this.nodes[this.nc-1].position.x, this.nodes[this.nc-1].position.y+(this.nr/2));
+	curveVertex(this.x, this.y-10);
+	for (let i = 0; i < this.nodeCount; i++) {
+		curveVertex(this.nodes.bodies[i].position.x, this.nodes.bodies[i].position.y);
+	};
+	curveVertex(this.nodes.bodies[this.nodeCount-1].position.x, this.nodes.bodies[this.nodeCount-1].position.y+10);
 	endShape();
 	// endball
 	noStroke();
-	fill(this.bcol);
-	ellipse(this.nodes[this.nc-1].position.x, this.nodes[this.nc-1].position.y,this.br,this.br);
+	fill(this.ballCol);
+	ellipse(this.nodes.bodies[this.nodeCount-1].position.x,this.nodes.bodies[this.nodeCount-1].position.y,this.ballRadius*2);
 };

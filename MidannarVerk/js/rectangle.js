@@ -29,11 +29,12 @@ Rectangle.prototype.show = function() {
 	fill(this.col);
 	rectMode(CENTER);
 	rect(0,0,this.w,this.h);
-
-	// debug angle lína
-	stroke(255-this.col);
-	strokeWeight(2);
-	line(0,0,this.w/2,0);
-	line(0,0,0,-this.h/2);
 	pop();
+
+	// // debug angle lína
+	// stroke(255-this.col);
+	// strokeWeight(2);
+	// line(0,0,this.w/2,0);
+	// line(0,0,0,-this.h/2);
+	// pop();
 }
