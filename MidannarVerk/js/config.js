@@ -46,8 +46,8 @@ const Engine			= Matter.Engine,
 // BASIC SIZE OG EHV STILLINGAR
 const startXPercent = 20,
 			startYPercent = 20,
-			cupBouncyness = 0.9,
-			endBallBouncyness = 0.3,
+			cupBouncyness = 0,
+			endBallBouncyness = 0,
 			endBallRadiusPercent = 3,
 			endBallMass = endBallRadiusPercent**3,
 			cupWidthPercent = endBallRadiusPercent * 2.55, // þetta er akkurat pirrandi erfitt

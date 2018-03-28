@@ -73,6 +73,7 @@ function preload() {
 		loadSound("../sound/looser-1.wav"),
 		loadSound("../sound/looser-2.wav"),
 	];
+	masterVolume(1.8);
 };
 
 function setup() {
