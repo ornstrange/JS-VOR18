@@ -58,20 +58,20 @@ function helpText() {
 
 function preload() {
 	plops = [
-		loadSound("../sound/plop-1.wav"),
-		loadSound("../sound/plop-2.wav"),
-		loadSound("../sound/plop-3.wav"),
-		loadSound("../sound/plop-4.wav"),
-		loadSound("../sound/plop-5.wav"),
+		loadSound("./../sound/plop-1.wav"),
+		loadSound("./../sound/plop-2.wav"),
+		loadSound("./../sound/plop-3.wav"),
+		loadSound("./../sound/plop-4.wav"),
+		loadSound("./../sound/plop-5.wav"),
 	];
 	victory = [
-		loadSound("../sound/victory-1.wav"),
-		loadSound("../sound/victory-2.wav"),
-		loadSound("../sound/victory-3.wav"),
+		loadSound("./../sound/victory-1.wav"),
+		loadSound("./../sound/victory-2.wav"),
+		loadSound("./../sound/victory-3.wav"),
 	];
 	looser = [
-		loadSound("../sound/looser-1.wav"),
-		loadSound("../sound/looser-2.wav"),
+		loadSound("./../sound/looser-1.wav"),
+		loadSound("./../sound/looser-2.wav"),
 	];
 	masterVolume(1.8);
 
