@@ -9,6 +9,7 @@ const String = function(x,y,nodeCount,nodeOffset,nodeRadius,ballRadius,stringCol
 	this.ballCol = ballCol;
 	this.nodes = [];
 	this.makeNodes(this.nodeCount,this.nodeOffset,this.nodeRadius,this.ballRadius);
+	this.endBall = this.nodes.bodies[this.nodeCount-1];
 };
 
 String.prototype.makeNodes = function(nc,no,nr,br){
@@ -27,6 +28,7 @@ String.prototype.makeNodes = function(nc,no,nr,br){
 		return Bodies.circle(x, y, radius, { density: 0.01, collisionFilter: { group: group, category: category, restitution: endBallBouncyness } });
 	});
 	Body.setMass(this.nodes.bodies[nc-1], endBallMass);
+	Body.set(this.nodes.bodies[nc-1], "slop", 0.001);
 	Composites.chain(this.nodes, 0, 0, 0, 0, { stiffness: 1 });
 	Composite.add(this.nodes, Constraint.create({
 		bodyA: cup.cup,
@@ -39,8 +41,8 @@ String.prototype.makeNodes = function(nc,no,nr,br){
 };
 
 String.prototype.nudgeEndBall = function() {
-	Body.setVelocity(this.nodes.bodies[this.nodeCount-1], { x: 0, y: 0 });
-	Body.translate(this.nodes.bodies[this.nodeCount-1], { x: -per.x(10), y: per.y(50) });
+	Body.setVelocity(this.endBall, { x: 0, y: 0 });
+	Body.translate(this.endBall, { x: -per.x(10), y: per.y(50) });
 };
 
 String.prototype.update = function() {
@@ -59,10 +61,10 @@ String.prototype.show = function() {
 	for (let i = 0; i < this.nodeCount; i++) {
 		curveVertex(this.nodes.bodies[i].position.x, this.nodes.bodies[i].position.y);
 	};
-	curveVertex(this.nodes.bodies[this.nodeCount-1].position.x, this.nodes.bodies[this.nodeCount-1].position.y+10);
+	curveVertex(this.endBall.position.x, this.endBall.position.y+10);
 	endShape();
 	// endball
 	noStroke();
 	fill(this.ballCol);
-	ellipse(this.nodes.bodies[this.nodeCount-1].position.x,this.nodes.bodies[this.nodeCount-1].position.y,this.ballRadius*2);
+	ellipse(this.endBall.position.x,this.endBall.position.y,this.ballRadius*2);
 };

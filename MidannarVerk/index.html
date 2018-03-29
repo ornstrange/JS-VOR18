@@ -6,12 +6,16 @@
 	<meta author="Örn Óli Strange">
 	<title>Bouncy Cup</title>
 	<style>
-		body{margin:0;padding:0;overflow:hidden;}
+		body{width:100vw;margin:0;padding:0;
+				 display: flex;align-items: center;justify-content: space-around;}
+		canvas{box-shadow:0 0 0.5rem rgba(0,0,0,0.125);}
+		@media only screen and (max-width: 480px) {
+		body {height:inital;}} /*ehv síma bögg*/
 	</style>
 </head>
 <body>
 	<script src="js/matter.js"></script>
-	<script src="js/p5.js"></script>
+	<script src="js/p5.min.js"></script>
 	<script src="js/p5.sound.js"></script>
 	<script src="js/config.js"></script>
 	<script src="js/events.js"></script>

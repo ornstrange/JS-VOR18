@@ -16,7 +16,7 @@ function addItems() {
 		per.x(cupWidthPercent),
 		per.x(cupHeightPercent),
 		per.x(cupWallWidthPercent),
-		75
+		cupColors[colorPicker]
 	);
 
 	string = new String(
@@ -26,8 +26,8 @@ function addItems() {
 		per.y(stringNodeOffsetPercent),
 		per.x(stringNodeWidthPercent),
 		per.x(endBallRadiusPercent),
-		50,
-		color(48,112,254)
+		stringColors[colorPicker],
+		ballColors[colorPicker]
   );
 };
 
@@ -49,7 +49,7 @@ function addMouse() {
 function helpText() {
 	if (showHelp) {
 		textSize(per.x(2.5));
-		textFont('roboto');
+		if (isPhone) {textSize(per.x(4));}
 		textAlign(RIGHT);
 		fill(0,0,0,190);
 		text("Click and hold the cup to drag it,\nget the ball in the cup!", per.x(98), per.y(10));
@@ -74,11 +74,25 @@ function preload() {
 		loadSound("../sound/looser-2.wav"),
 	];
 	masterVolume(1.8);
+
+	if (windowWidth <= 480) {
+		isPhone = true;
+	};
 };
 
 function setup() {
+	per = new Per();
+	if (isPhone) {
+		phoneSettings();
+	};
+
 	// canvas og bg color
-	var canvas = createCanvas(per.x(100), per.y(100));
+	canvas = createCanvas(per.x(100), per.y(100));
+	body = document.getElementsByTagName("body")[0];
+	body.style.background = backgroundColors[colorPicker];
+	pixelDensity(1);
+	textFont("Arial");
+	textFont("Helvetica");
 	matterSetup();
 	addItems();
 
@@ -91,10 +105,11 @@ function setup() {
 };
 
 function draw() {
-	background(254, 211, 48);
+	background(backgroundColors[colorPicker]);
 	scoreTimerEvents();
 	drawCountdown();
 	drawScore();
+	drawHighScore();
 
 	string.show();
 	cup.show();

@@ -31,11 +31,11 @@ Cup.prototype.makeWalls = function(w,h,ww){
 };
 
 Cup.prototype.makeSensorBar = function() {
-	this.sensorBar = Bodies.rectangle(this.x, this.y - this.ww*3, this.w - (this.ww*4), this.ww/2, { isSensor: true });
+	this.sensorBar = Bodies.rectangle(this.x, this.y - this.ww*2, this.w - (this.ww*4), this.ww, { isSensor: true });
 	let sensorConst = Constraint.create({
 		bodyA: this.sensorBar,
 		bodyB: this.cup,
-		pointB: { x: 0, y: (this.cup.parts[1].position.y - this.cup.position.y) - this.ww*3 },
+		pointB: { x: 0, y: (this.cup.parts[1].position.y - this.cup.position.y) - this.ww*2 },
 		stiffness: 1,
 		angularStiffness: 1
 	});
@@ -80,10 +80,16 @@ Cup.prototype.show = function() {
 	pop();
 
 	// // debug sjá this.x og this.y og sensor bar
+	// push();
 	// rectMode(CENTER);
 	// fill(0);
 	// rect(this.x, this.y, this.ww, this.ww);
-	// fill(255);
+	// fill(0);
 	// noStroke();
-	// rect(this.sensorBar.position.x, this.sensorBar.position.y, this.w - (this.ww*4), this.ww/2);
+	// beginShape();
+	// for (let i = 0; i < 4; i++) {
+	// 	vertex(this.sensorBar.vertices[i].x,this.sensorBar.vertices[i].y);
+	// };
+	// endShape(CLOSE);
+	// pop();
 };
